@@ -1,19 +1,21 @@
-package card;
+package atm;
+
+import bank.Account;
 
 public abstract class Card{
 	
-	private final Account account;
-	private final String system;
-	private final String number;
+	private Account account;
+	private  String system;
+	private  String number;
 	private int pin;
-	private final String owner;
+	private  String owner;
 	
 	public double getBalance(){
 		return account.getBalance();
 	}
 	
 	public void setBalance(double balance){
-		account,setBalance(balance); 
+		account.setBalance(balance);
 	}
 	
 	public String getSystem(){

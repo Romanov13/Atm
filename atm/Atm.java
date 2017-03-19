@@ -1,11 +1,11 @@
 package atm;
 
-class Atm{
+public class Atm{
 	
 	Card currentCard;
 	boolean cardIn;
 	
-	Atm(){
+	public Atm(){
 		
 		currentCard = null;
 		cardIn = false;
@@ -30,7 +30,7 @@ class Atm{
 	
 	public double checkBalance(){
 		
-		return currentCard.balance;
+		return currentCard.getBalance();
 	}
 	
 	public void deposit(double deposit){
@@ -43,23 +43,23 @@ class Atm{
 		
 		currentCard.setBalance(balance);
 		} else {
-			System.out.printli("Please insert the card");
+			System.out.println("Please insert the card");
 		}
 	}
 	
 	public void withdraw(double amount){
 		if(cardIn){
 			
-			balance = currentCard.getBalance();
+			double balance = currentCard.getBalance();
 			
 			if(balance >= amount){
 				balance -= amount;
-				currentCard.setBalance();
+				currentCard.setBalance(balance);
 			} else {
-				System.out.println("Not enough money")
+				System.out.println("Not enough money");
 			}
 		} else {
-			System.out.printli("Please insert the card");
+			System.out.println("Please insert the card");
 		}
 	}
 }
