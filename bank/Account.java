@@ -1,7 +1,5 @@
 package bank;
 
-import sun.swing.CachedPainter;
-
 public class Account{
 	
 	private Client client;
