@@ -1,11 +1,13 @@
 package bank;
 
+import java.math.BigDecimal;
+
 public class Account{
 	
 	private Client client;
 
 	private int number;
-	private double balance;
+	private BigDecimal balance;
 
 	public int getNumber() {
 		return number;
@@ -13,11 +15,11 @@ public class Account{
 
 
 
-	public double getBalance() {
+	public BigDecimal getBalance() {
 		return balance;
 	}
 
-	public void setBalance(double balance) {
+	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
 
