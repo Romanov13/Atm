@@ -1,5 +1,7 @@
 package atm;
 
+import java.math.BigDecimal;
+
 public class Atm{
 	
 	Card currentCard;
@@ -28,18 +30,18 @@ public class Atm{
 		System.out.println("Card in Ejected");
 	}
 	
-	public double checkBalance(){
+	public BigDecimal checkBalance(){
 		
 		return currentCard.getBalance();
 	}
 	
-	public void deposit(double deposit){
+	public void deposit(BigDecimal deposit){
 		
 		if(cardIn){
 			
-		double balance = currentCard.getBalance();
+		BigDecimal balance = currentCard.getBalance();
 		
-		balance += deposit;
+		balance = balance.add(deposit);
 		
 		currentCard.setBalance(balance);
 		} else {
@@ -47,13 +49,13 @@ public class Atm{
 		}
 	}
 	
-	public void withdraw(double amount){
+	public void withdraw(BigDecimal amount){
 		if(cardIn){
 			
-			double balance = currentCard.getBalance();
+			BigDecimal balance = currentCard.getBalance();
 			
-			if(balance >= amount){
-				balance -= amount;
+			if(balance.compareTo(amount) >= 0){
+				balance = balance.subtract(amount);
 				currentCard.setBalance(balance);
 			} else {
 				System.out.println("Not enough money");
