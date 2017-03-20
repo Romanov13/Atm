@@ -6,11 +6,14 @@ class Bank{
 
 	Set<Client> clients = new HashSet<Client>();
 
-	HashMap<Client, Account> accounts = new HashMap<Client, Account>();
+	HashMap<Client, HashSet<Account>> accounts = new HashMap<Client, HashSet<Account>>();
 	
 	public Account makeAccount(Client client){
+		if(!clients.contains(client){
+			clients.add(client);
+		}
 		Account account = new Account(client);
-		accounts.add(client, account);
+		accounts.get(client).add(account);
 		return account;
 	}
 	
