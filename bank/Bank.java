@@ -10,7 +10,12 @@ class Bank{
 	
 	public Account makeAccount(Client client){
 		Account account = new Account(client);
-		
+		accounts.add(client, account);
 		return account;
 	}
+	
+	public void addClient(Client client){
+		clients.add(client);
+	}
+	
 }
