@@ -20,5 +20,9 @@ class Bank{
 	public void addClient(Client client){
 		clients.add(client);
 	}
+		   
+		   public Card issueCard(Account account){
+		   Card card = new MasterCard(account.getClient());
+		   }
 	
 }
