@@ -6,7 +6,7 @@ public abstract class Card{
 	
 	private Account account;
 	private  String system;
-	private  String number;
+	private  int number;
 	private int pin;
 	private  String owner;
 	
@@ -22,7 +22,7 @@ public abstract class Card{
 		return system;
 	}
 	
-	public String getNumber(){
+	public int getNumber(){
 		return number;
 	}
 	
