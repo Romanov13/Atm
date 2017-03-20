@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class Account{
 	
-	private Client client;
+	private Payer client;
 
 	private int number;
 	private BigDecimal balance;
@@ -25,14 +25,14 @@ public class Account{
 
 
 
-	public Account(Client client) {
+	public Account(Payer client) {
 		this.client = client;
 		number = (int) (Math.random() * 9999);
-		balance = 0.00;
+		balance = BigDecimal.valueOf(0.00);
 
 	}
 
-	public Client getClient() {
+	public Payer getClient() {
 		return client;
 	}
 }

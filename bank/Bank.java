@@ -2,27 +2,72 @@ package bank;
 
 import java.util.*;
 
-class Bank{
+public class Bank{
 
-	Set<Client> clients = new HashSet<Client>();
+	Set<Payer> clients ;
+	List<Card> cards;
 
-	HashMap<Client, HashSet<Account>> accounts = new HashMap<Client, HashSet<Account>>();
-	
-	public Account makeAccount(Client client){
-		if(!clients.contains(client){
+	HashMap<Payer, HashSet<Account>> accounts = new HashMap<Payer, HashSet<Account>>();
+
+
+	public Bank(){
+		clients = new HashSet<Payer>();
+		cards = new ArrayList<Card>();
+	}
+	public Account makeAccount(Payer client){
+		if(!clients.contains(client)){
 			clients.add(client);
+			accounts.put(client, new HashSet<Account>());
 		}
 		Account account = new Account(client);
+
 		accounts.get(client).add(account);
 		return account;
 	}
-	
-	public void addClient(Client client){
-		clients.add(client);
-	}
 		   
 		   public Card issueCard(Account account){
-		   Card card = new MasterCard(account.getClient());
+		   Card card = new MasterCard(account);
+		   cards.add(card);
+		   return card;
+		   }
+
+		   public Card searchCard(String number) {
+			   Card foundCard = null;
+			   for (Card c : cards) {
+				   if (number.equals(c.getNumber())) {
+					   foundCard = c;
+				   }
+
+			   } return foundCard;
+		   }
+
+		   public Account searchAccount(Payer payer){
+		   	Account foundAccount = null;
+		   	HashSet<Account> payerAccounts = accounts.get(payer);
+for(Account a : payerAccounts){
+	if(a.getClient().equals(payer)){
+		foundAccount = a;
+	}
+}
+return foundAccount;
 		   }
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

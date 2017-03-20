@@ -1,10 +1,13 @@
 package atm;
 
+import bank.Card;
+
 import java.math.BigDecimal;
+import java.util.Scanner;
 
 public class Atm{
 	
-	Card currentCard;
+	public Card currentCard;
 	boolean cardIn;
 	
 	public Atm(){
@@ -15,22 +18,23 @@ public class Atm{
 	
 	public void insertCard(Card card){
 		if(!cardIn){
-			if(checkPin()){
+			if(checkPin(card)){
 		currentCard = card;
 		cardIn = true;
+		System.out.println("Card " + card.getNumber() + " of " + card.getOwner() + " is inserted.");
 			} else {System.out.println("Sorry, the PIN is incorrect");}
 		} else {
 			System.out.println("Please eject the current card");
 		}
 	}
 	
-	public boolean checkPin(){
+	public boolean checkPin(Card card){
 		
 		System.out.println("Enter the PIN");
-		Scanner sc = new Scanner(System.In);
+		Scanner sc = new Scanner(System.in);
 		String pinInput = sc.nextLine();
 		
-		if((currentCard.getPin()).equals(pinInput))
+		if((card.getPin()).equals(pinInput))
 		{return true;} else {return false;}
 	}
 	
