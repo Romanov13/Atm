@@ -47,8 +47,12 @@ public class Atm{
 	}
 	
 	public BigDecimal checkBalance(){
-		
+		try{
 		return currentCard.getBalance();
+		} catch (OverdraftException oe){
+		System.out.println("Sorry, the card is suspended");
+			oe.printStackTrace();
+		}
 	}
 	
 	public void deposit(BigDecimal deposit){
