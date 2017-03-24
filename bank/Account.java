@@ -15,8 +15,14 @@ public class Account{
 
 
 
-	public BigDecimal getBalance() {
+	public BigDecimal getBalance() throws OverdraftException{
+		if(balance >= 0){
 		return balance;
+		} else {
+			throw new OverdraftException("Overdraft") extends Exception{
+				
+			};
+		}
 	}
 
 	public void setBalance(BigDecimal balance) {
