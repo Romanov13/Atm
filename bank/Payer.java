@@ -24,10 +24,10 @@ cards.add(card);
 
 
 	
-	public Payer(String name){
+	public Payer(String name, String phone){
 		this.name = name;
 		cards = new ArrayList<Card>();
-		phone = "+79312028771";
+		this.phone = phone;
 	}
 
 	public void setPrimeCard(Card card){
