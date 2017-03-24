@@ -16,8 +16,8 @@ this.bank = bank;
 }
 
 public void buyItem(){
-
-System.out.println("To buy an item for $50, please enter the card number, the date of expiery and CVV.");
+BigDecimal price = 150;
+System.out.println("To buy an item for $150, please enter the card number, the date of expiery and CVV.");
     Scanner sc = new Scanner(System.in);
     System.out.println("Enter the number");
     String numberInput = sc.nextLine();
@@ -31,7 +31,7 @@ System.out.println("To buy an item for $50, please enter the card number, the da
         Card cardToWithdraw = bank.searchCard(numberInput);
         if(smsSecure(cardToWithdraw)) {
         BigDecimal balance = cardToWithdraw.getBalance();
-        balance = balance.subtract(BigDecimal.valueOf(50));
+        balance = balance.subtract(BigDecimal.valueOf(price));
         cardToWithdraw.setBalance(balance);
     } else { System.out.println("Sorry, the code is incrrect");}
 
