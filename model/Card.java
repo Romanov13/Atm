@@ -1,4 +1,4 @@
-package bank;
+package model;
 
 import java.math.BigDecimal;
 
@@ -14,11 +14,11 @@ public abstract class Card{
 
 
 	
-	public BigDecimal getBalance(){
+	public BigDecimal getBalance() {
 		return account.getBalance();
 	}
 	
-	public void setBalance(BigDecimal balance){
+	public void setBalance(BigDecimal balance) throws OverdraftException {
 		account.setBalance(balance);
 	}
 	

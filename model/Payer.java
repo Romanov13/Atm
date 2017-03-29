@@ -1,4 +1,4 @@
-package bank;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,5 +37,8 @@ cards.add(card);
     public Card getPrimeCard(){
 	    return primeCard;
     }
-	
+
+    public String toString(){
+        return name;
+    }
 }

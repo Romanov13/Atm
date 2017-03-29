@@ -1,6 +1,6 @@
-package atm;
+package model;
 
-import bank.Card;
+import model.*;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
@@ -47,23 +47,22 @@ public class Atm{
 	}
 	
 	public BigDecimal checkBalance(){
-		try{
-		return currentCard.getBalance();
-		} catch (OverdraftException oe){
-		System.out.println("Sorry, the card is suspended");
-			oe.printStackTrace();
-		}
+			return currentCard.getBalance();
 	}
 	
 	public void deposit(BigDecimal deposit){
 		
 		if(cardIn){
-			
-		BigDecimal balance = currentCard.getBalance();
-		
-		balance = balance.add(deposit);
-		
-		currentCard.setBalance(balance);
+
+			BigDecimal balance = null;
+				balance = currentCard.getBalance();
+			balance = balance.add(deposit);
+
+			try {
+				currentCard.setBalance(balance);
+			} catch (OverdraftException e) {
+				e.printStackTrace();
+			}
 		} else {
 			System.out.println("Please insert the card");
 		}
@@ -71,13 +70,16 @@ public class Atm{
 	
 	public void withdraw(BigDecimal amount){
 		if(cardIn){
-			
-			BigDecimal balance = currentCard.getBalance();
-			
-			if(balance.compareTo(amount) >= 0){
-				balance = balance.subtract(amount);
+
+			BigDecimal balance = null;
+
+				balance = currentCard.getBalance();
+
+
+			try {
 				currentCard.setBalance(balance);
-			} else {
+			} catch (OverdraftException e) {
+				e.printStackTrace();
 				System.out.println("Not enough money");
 			}
 		} else {

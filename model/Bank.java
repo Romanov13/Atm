@@ -1,4 +1,4 @@
-package bank;
+package model;
 
 import java.util.*;
 

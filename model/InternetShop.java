@@ -1,8 +1,9 @@
-package atm;
+package model;
 
-import bank.*;
+import model.*;
 
 import java.math.BigDecimal;
+import java.util.Random;
 import java.util.Scanner;
 
 public class InternetShop{
@@ -16,7 +17,7 @@ this.bank = bank;
 }
 
 public void buyItem(){
-BigDecimal price = 150;
+BigDecimal price = BigDecimal.valueOf(150);
 System.out.println("To buy an item for $150, please enter the card number, the date of expiery and CVV.");
     Scanner sc = new Scanner(System.in);
     System.out.println("Enter the number");
@@ -30,10 +31,17 @@ System.out.println("To buy an item for $150, please enter the card number, the d
 
         Card cardToWithdraw = bank.searchCard(numberInput);
         if(smsSecure(cardToWithdraw)) {
-        BigDecimal balance = cardToWithdraw.getBalance();
-        balance = balance.subtract(BigDecimal.valueOf(price));
-        cardToWithdraw.setBalance(balance);
-    } else { System.out.println("Sorry, the code is incrrect");}
+            BigDecimal balance = null;
+
+                balance = cardToWithdraw.getBalance();
+
+            balance = balance.subtract(price);
+            try {
+                cardToWithdraw.setBalance(balance);
+            } catch (OverdraftException e) {
+                e.printStackTrace();
+            }
+        } else { System.out.println("Sorry, the code is incrrect");}
 
 } else {System.out.println("Invalid card");}
 }
@@ -55,11 +63,35 @@ System.out.println("To buy an item for $150, please enter the card number, the d
 
 public boolean smsSecure(Card card){
         System.out.println("SMS have been sent to your number " + card.getOwner().getPhone() + ". Please enter the code.");
-        int c = (int) Math.random() * 9999;
-        String code = String.valueOf(c);
+        Random r = new Random();
+        StringBuilder code = new StringBuilder(4);
+        for(int i = 0; i < code.capacity(); i++){
+            int c = r.nextInt(10);
+            code.append(c);
+        }
         System.out.println("The code for your transaction is " + code + ". Do not tell it to anyone.");
         Scanner scn = new Scanner(System.in);
         String codeInput = scn.nextLine();
-        if(scn.equals(code)){System.out.println("The code is correct");return true;} else {return false;}
+        if(codeInput.equals(code.toString())){System.out.println("The code is correct");return true;} else {return false;}
 }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
