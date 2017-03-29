@@ -6,11 +6,27 @@ import oracle.jrockit.jfr.JFR;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import controller.*;
 
 /**
  * Created by samsung on 29.03.2017.
  */
 public class MainWindow extends JFrame {
+
+    public Controller getCont() {
+        return cont;
+    }
+
+    public void setCont(Controller cont) {
+        this.cont = cont;
+    }
+
+    Controller cont;
+    JLabel nameL = new JLabel("Blank");
+    JLabel phoneL = new JLabel("Blank");
+
 
     public MainWindow(){
         super("ATM Simulation");
@@ -19,6 +35,14 @@ public class MainWindow extends JFrame {
 
         JMenu profileMenu = new JMenu("Profile");
         JMenuItem newProfileItem = new JMenuItem("Set Profile");
+        newProfileItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cont.setProfile();
+                nameL.setText(cont.getPayerName());
+                phoneL.setText(cont.getPayerPhone());
+            }
+        });
         profileMenu.add(newProfileItem);
 
         JMenu accountMenu = new JMenu("Account");
@@ -32,25 +56,37 @@ public class MainWindow extends JFrame {
 
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(java.awt.Color.blue);
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
+
 
         JPanel leftPanel = new JPanel();
         leftPanel.setBackground(java.awt.Color.green);
-        leftPanel.setPreferredSize(new Dimension(300, 800));
+        leftPanel.setPreferredSize(new Dimension(250, 750));
+        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.PAGE_AXIS));
 
         Box profileBox = Box.createVerticalBox();
+        profileBox.setPreferredSize(new Dimension(250, 750));
 
         JButton addButton = new JButton("Add");
 
-        profileBox.add(addButton);
+        profileBox.add(nameL);
 
 
         Box secondBox = Box.createVerticalBox();
 
-        profileBox.add(new JButton("Add2"));
+        profileBox.add(phoneL);
 
         leftPanel.add(profileBox);
 
-        mainPanel.add(leftPanel, BorderLayout.WEST);
+        JPanel centerPanel = new JPanel();
+        centerPanel.setPreferredSize(new Dimension(250, 750));
+
+        JPanel rightPanel = new JPanel();
+        rightPanel.setPreferredSize(new Dimension(250, 750));
+        mainPanel.add(Box.createRigidArea(new Dimension(3, 0)));
+        mainPanel.add(leftPanel);
+//        mainPanel.add(centerPanel);
+//        mainPanel.add(rightPanel);
 
         setContentPane(mainPanel);
 
