@@ -14,7 +14,7 @@ public class Bank{
 		clients = new HashSet<Payer>();
 		cards = new ArrayList<Card>();
 	}
-	public Account makeAccount(Payer client){
+	public void makeAccount(Payer client){
 		if(!clients.contains(client)){
 			clients.add(client);
 			accounts.put(client, new HashSet<Account>());
@@ -22,7 +22,7 @@ public class Bank{
 		Account account = new Account(client);
 
 		accounts.get(client).add(account);
-		return account;
+		
 	}
 		   
 		   public Card issueCard(Account account){
