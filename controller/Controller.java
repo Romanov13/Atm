@@ -8,15 +8,29 @@ import java.io.*;
 import java.math.BigDecimal;
 
 public class Controller {
-
-    Payer payer;
+    // MVC eleemnts
+    Payer currentPayer;
+    Bank currentBank;
+    InternetShop iShop;
+    Atm activeAtm;
+    
+    public Controller(){
+       currentBank = new Bank();
+        iShop = new InternetShop();
+        activeAtm= new Atm();
+ 
+    }
+    
+    public  void setProfile(String name, String phone) {
+     currentPayer = new Payer(name, phone);   
+    }
 
     public  void setProfile() {
         try {
             BufferedReader bf = new BufferedReader(new FileReader(new File("resources\\PayerList.txt")));
             String name = bf.readLine();
             String[] payerName = name.split("/");
-            payer = new Payer(payerName[0], payerName[1]);
+            currentPayer = new Payer(payerName[0], payerName[1]);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -25,6 +39,9 @@ public class Controller {
         }
     }
 
+    public void createAccount(){
+        
+    }
     public String getPayerName() {
         return payer.getName();
     }
