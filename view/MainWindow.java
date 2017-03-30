@@ -133,6 +133,7 @@ public class MainWindow extends JFrame {
         // Card panel
         
         JPanel cardPanel = new JPanel();
+        cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
         cardPanel.setBorder(BorderFactory.createRaisedBevelBorder());
         cardPanel.setPreferredSize(new Dimention(290, 350));
         bankCL = "Bank";
@@ -172,7 +173,7 @@ public class MainWindow extends JFrame {
         mainPanel.add(centerPanel);
         mainPanel.add(rightPanel);
 
-        setContentPane(mainPanel);
+        add.(mainPanel);
 
 
         setSize(900, 800);
