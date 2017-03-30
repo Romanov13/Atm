@@ -15,26 +15,48 @@ import controller.*;
  */
 public class MainWindow extends JFrame {
 
-    public Controller getCont() {
-        return cont;
-    }
-
-    public void setCont(Controller cont) {
-        this.cont = cont;
-    }
-
+    
+    //MVC elements
     Controller cont;
-    JLabel nameL = new JLabel("Blank");
-    JLabel phoneL = new JLabel("Blank");
+    
+    //Labels
+    JLabel nameL;
+    JLabel phoneL;
+    JLabel accL = new JLabel("");
+    
+    String blank = "Blank";
 
 
-    public MainWindow(){
+
+    
+       
+   
+    public MainWindow(Controller cont){
         super("ATM Simulation");
-
+         this.cont = cont;
+        cont.setProfile(blank, blank);
+        
+        // Setup menu bar
         JMenuBar menuBar = new JMenuBar();
 
         JMenu profileMenu = new JMenu("Profile");
         JMenuItem newProfileItem = new JMenuItem("Set Profile");
+        JMenuItem resetProfileItem = new JMenuItem("Reset Profile");
+        profileMenu.add(newProfileItem);
+        profileMenu.add(resetProfileItem);
+        
+        
+        JMenu accountMenu = new JMenu("Account");
+        JMenuItem newAccountItem = new JMenuItem("Create Account");
+        
+        accountMenu.add(newAccountItem);
+
+        menuBar.add(profileMenu);
+        menuBar.add(accountMenu);
+
+        setJMenuBar(menuBar);
+        
+        // Set up action listeners for menu
         newProfileItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,17 +65,25 @@ public class MainWindow extends JFrame {
                 phoneL.setText(cont.getPayerPhone());
             }
         });
-        profileMenu.add(newProfileItem);
+        
+        resetProfileItem
+        
+        
 
-        JMenu accountMenu = new JMenu("Account");
-        JMenuItem newAccountItem = new JMenuItem("Create Account");
-        accountMenu.add(newAccountItem);
-
-        menuBar.add(profileMenu);
-        menuBar.add(accountMenu);
-
-        setJMenuBar(menuBar);
-
+        newAccountItem.addActionListener(new ActionPerformed(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if(!(nameL.getText().equals(blank) && phoneL.getText().equals(blank))){
+                cont.createAccount();
+                accL.setText("The account No." + cont.getAccountNumber() + " for " + cont.getPayerName() + " has been opened.");
+                } else {
+                    accL.setText("The account for " + cont.getPayerName() + " cannot be created.");
+                }
+                
+        });
+            
+        
+        // Set up background
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(java.awt.Color.blue);
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
@@ -68,12 +98,14 @@ public class MainWindow extends JFrame {
         profileBox.setPreferredSize(new Dimension(250, 750));
 
         JButton addButton = new JButton("Add");
-
+                
+        nameL.setText(cont.getPayerName());
         profileBox.add(nameL);
 
 
         Box secondBox = Box.createVerticalBox();
 
+        phoneL.setText(cont.getPayerPhone());
         profileBox.add(phoneL);
 
         leftPanel.add(profileBox);
