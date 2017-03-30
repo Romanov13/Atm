@@ -37,6 +37,16 @@ public class MainWindow extends JFrame {
     JLabel holderNameL;
     JLabel dateL;
     
+    // ATM fields
+    JButton insertEjectBtn;
+    JButton depositBtn;
+    JButton withdrawBtn;
+    JButton okBtn;
+    JLabel atmL;
+    JTextField displayFld;
+    JTextField atmInputFld;
+    
+    
     String blank = "Blank";
 
 
@@ -151,7 +161,7 @@ public class MainWindow extends JFrame {
         JPanel cardPanel = new JPanel();
         cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
         cardPanel.setBorder(BorderFactory.createRaisedBevelBorder());
-        cardPanel.setPreferredSize(new Dimention(290, 350));
+        cardPanel.setPreferredSize(new Dimention(290, 300));
         bankCL = "Bank";
         cardPanel.add(bankCL);
         cardSystemL = "";
@@ -176,11 +186,62 @@ public class MainWindow extends JFrame {
         cardHolderName.setText(cont.getPayerName().toUpperCase());
         cardPanel.add(cardHolderName);
                        
+                       // ATM Panel
+                     JPanel atmPanel = new JPanel();
+                       atmPanel.setLayout(new BoxLayout(atmPanel, BoxLayout.X_AXIS));
+                       atmPanel.setBorder(BorderFactory.createTitledBorder(loweredetched, "ATM"));
+                       atmPanel.setPreferredSize(new Dimention(290, 350));
+                       
+                       Box leftAtmPanel = Box.createVerticalBox();
+                       insertEjectBtn = new JButton("Insert");
+                       depositBtn = new JButton("Deposit");
+                       
+                       leftAtmPanel.add(Box.createRigidArea(3));
+                       leftAtmPanel.add(insertEjectBtn);
+                       leftAtmPanel.add(Box.createVerticalGlue());
+                       leftAtmPanel.add(depositBtn);
+                        leftAtmPanel.add(Box.createRigidArea(3));
+                       
+                       Box centralAtmPanel = Box.createVerticalBox();
+                       atmL = new JLabel("Insert a card");
+                       
+                       displayFld = new JTextField(10);
+                      displayFld.setEditable(false);
+                       
+                       atmInputFld = new JTextField(10);
+                       
+                       
+                       centralAtmPanel.add(atmL);
+                       centralAtmPanel.add(displayFld);
+                       centralAtmPanel.add(Box.createRigidArea(0, 10));
+                       centralAtmPanel.add(atmInputFld);
+                     
+                       Box rightAtmPanel = Box.createVerticalBox();
+                       okBtn = new JButton("OK");
+                       withdrawBtn = new JButton("Withdraw");
+                       
+                       rightAtmPanel.add(Box.createRigidArea(3));
+                       rightAtmPanel.add(okBtn);
+                       rightAtmPanel.add(Box.createVerticalGlue());
+                       rightAtmPanel.add(withdrawBtn);
+                        rightAtmPanel.add(Box.createRigidArea(3));
+                       
+                       
+                                                   
+                       
+                       
+                       atmPanel.add(leftAtmPanel);
+                       atmPanel.add(centralAtmPanel);
+                       atmPanel.add(rightAtmPanel);
+                       
+                     
+                       
                       
         
         JPanel centerPanel = new JPanel();
         centerPanel.setPreferredSize(new Dimension(300, 750));
         centerPanel.add(cardPanel);
+                       centerPanel.add(atmPanel);
 
         JPanel rightPanel = new JPanel();
         rightPanel.setPreferredSize(new Dimension(145, 750));
