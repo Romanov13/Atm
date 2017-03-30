@@ -18,7 +18,7 @@ public class Payer{
         return phone;
     }
 
-    public void getACard(Card card){
+    public void addCard(Card card){
 cards.add(card);
     }
 
