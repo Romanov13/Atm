@@ -43,17 +43,46 @@ public class Controller {
         currentBank.makeAccount(currentPayer);
         
     }
+    
+    public void issueCard(){
+    Card c = currentBank.issueCard(currentBank.serchAccount(currentPayer));
+        currentPayer.addCard(c);
+        currentPayer.setPrimeCard(c);
+        
+    }
+    
+    
     public String getPayerName() {
-        return payer.getName();
+        return currentPayer.getName();
     }
 
     public String getPayerPhone() {
-        return payer.getPhone();
+        return currentPayer.getPhone();
     }
     
     public String getAccountNumber(){
-        String accNumber = currentBank.searchAccount(payer).getNumber();
+        String accNumber = currentBank.searchAccount(currentPayer).getNumber();
         return accNumber;
      
+    }
+    
+    public String getCardNumber(){
+     return currentPayer.getPrimeCard().getNumber();   
+    }
+    
+    public String getCardCvv(){
+     return currentPayer.getPrimeCard().getCvv();   
+    }
+    
+    public String getCardDate(){
+     return currentPayer.getPrimeCard().getDate();   
+    }
+    
+    public String getHolderName(){
+     return currentPayer.getName();   
+    }
+    
+    public String getCardSystem(){
+     return currentPayer.getPrimeCard().getSystem();   
     }
 }
