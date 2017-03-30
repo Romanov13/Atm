@@ -40,6 +40,7 @@ public class Controller {
     }
 
     public void createAccount(){
+        currentBank.makeAccount(currentPayer);
         
     }
     public String getPayerName() {
@@ -48,5 +49,11 @@ public class Controller {
 
     public String getPayerPhone() {
         return payer.getPhone();
+    }
+    
+    public String getAccountNumber(){
+        String accNumber = currentBank.searchAccount(payer).getNumber();
+        return accNumber;
+     
     }
 }
