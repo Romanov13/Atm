@@ -38,7 +38,7 @@ public abstract class Card{
 		return owner;
 	}
 
-	public String geteDate() {
+	public String getDate() {
 		return eDate;
 	}
 

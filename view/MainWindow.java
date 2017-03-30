@@ -5,6 +5,7 @@ import com.sun.xml.internal.messaging.saaj.soap.JpegDataContentHandler;
 import oracle.jrockit.jfr.JFR;
 
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -102,28 +103,30 @@ public class MainWindow extends JFrame {
         });
         
 
-        newAccountItem.addActionListener(new ActionPerformed(){
+        newAccountItem.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
-                if(!(nameL.getText().equals(blank) && phoneL.getText().equals(blank))){
-                cont.createAccount();
-                accL.setText("The account No." + cont.getAccountNumber() + " for " + cont.getPayerName() + " has been opened.");
+            public void actionPerformed(ActionEvent e) {
+                if (!(nameL.getText().equals(blank) && phoneL.getText().equals(blank))) {
+                    cont.createAccount();
+                    accL.setText("The account No." + cont.getAccountNumber() + " for " + cont.getPayerName() + " has been opened.");
                 } else {
                     accL.setText("The account for " + cont.getPayerName() + " cannot be created.");
                 }
-                
+
+            }
         });
             
-            issueCardItem.addActionListener(new ActionPerformed(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                cont.issueCard();
-                setCardNumber(cont.getCardNumber());
-                cardSystemL.setText(cont.getCardSystem());
-                holderName.setText(cont.getPayerName().toUpperCase());
-                cvvL.setText(cont.getCardCvv());
-                dateL.setText(cont.getCardDate());
-            }
+            issueCardItem.addActionListener(new ActionListener() {
+                                                @Override
+                                                public void actionPerformed(ActionEvent e) {
+                                                    cont.issueCard();
+                                                    setCardNumber(cont.getCardNumber());
+                                                    cardSystemL.setText(cont.getCardSystem());
+                                                    holderNameL.setText(cont.getPayerName().toUpperCase());
+                                                    cvvL.setText(cont.getCardCvv());
+                                                    dateL.setText(cont.getCardDate());
+                                                }
+                                            });
                 
             
         
@@ -141,16 +144,16 @@ public class MainWindow extends JFrame {
         Box profileBox = Box.createVerticalBox();
         profileBox.setPreferredSize(new Dimension(140, 750));
                 
-        nameL.setText(cont.getPayerName());
-        profileBox.add(new JLabel("Name:");
+        nameL = new JLabel(cont.getPayerName());
+        profileBox.add(new JLabel("Name:"));
         profileBox.add(nameL);
 
-        phoneL.setText(cont.getPayerPhone());
-        profileBox.add(new JLabel("Phone:");
+        phoneL = new JLabel(cont.getPayerPhone());
+        profileBox.add(new JLabel("Phone:"));
         profileBox.add(phoneL);
-        profileBox.add("Account:");
+        profileBox.add(new JLabel("Account:"));
         profileBox.add(accL);
-        profileBox.add(Box.createVerticalGlue();
+        profileBox.add(Box.createVerticalGlue());
             
       
 
@@ -161,46 +164,46 @@ public class MainWindow extends JFrame {
         JPanel cardPanel = new JPanel();
         cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
         cardPanel.setBorder(BorderFactory.createRaisedBevelBorder());
-        cardPanel.setPreferredSize(new Dimention(290, 300));
-        bankCL = "Bank";
+        cardPanel.setPreferredSize(new Dimension(290, 300));
+        bankCL = new JLabel("Bank");
         cardPanel.add(bankCL);
-        cardSystemL = "";
+        cardSystemL = new JLabel("");
                        
         JPanel cardNumber = new JPanel(new GridLayout(1, 4)); 
-        cardNumber1 = "XXXX";
+        cardNumber1 = new JLabel("XXXX");
         cardNumber.add(cardNumber1); 
-        cardNumber2 = "XXXX";
+        cardNumber2 = new JLabel("XXXX");
         cardNumber.add(cardNumber2);
-        cardNumber3 = "XXXX";
+        cardNumber3 = new JLabel("XXXX");
         cardNumber.add(cardNumber3);
-        cardNumber3 = "XXXX";
+        cardNumber3 = new JLabel("XXXX");
         cardNumber.add(cardNumber3);
         cardPanel.add(cardNumber);   
                
-        dateL = "XX/XX";
+        dateL = new JLabel("XX/XX");
         cardPanel.add(dateL);
                        
-        cvvL = "XXX";
+        cvvL = new JLabel("XXX");
         cardPanel.add(cvvL); 
                        
-        cardHolderName.setText(cont.getPayerName().toUpperCase());
-        cardPanel.add(cardHolderName);
+        holderNameL = new JLabel(cont.getPayerName().toUpperCase());
+        cardPanel.add(holderNameL);
                        
                        // ATM Panel
                      JPanel atmPanel = new JPanel();
                        atmPanel.setLayout(new BoxLayout(atmPanel, BoxLayout.X_AXIS));
-                       atmPanel.setBorder(BorderFactory.createTitledBorder(loweredetched, "ATM"));
-                       atmPanel.setPreferredSize(new Dimention(290, 350));
+                       atmPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "ATM"));
+                       atmPanel.setPreferredSize(new Dimension(290, 350));
                        
                        Box leftAtmPanel = Box.createVerticalBox();
                        insertEjectBtn = new JButton("Insert");
                        depositBtn = new JButton("Deposit");
                        
-                       leftAtmPanel.add(Box.createRigidArea(3));
+                       leftAtmPanel.add(Box.createRigidArea(new Dimension(0, 3)));
                        leftAtmPanel.add(insertEjectBtn);
                        leftAtmPanel.add(Box.createVerticalGlue());
                        leftAtmPanel.add(depositBtn);
-                        leftAtmPanel.add(Box.createRigidArea(3));
+                        leftAtmPanel.add(Box.createRigidArea(new Dimension(0, 3)));
                        
                        Box centralAtmPanel = Box.createVerticalBox();
                        atmL = new JLabel("Insert a card");
@@ -213,18 +216,18 @@ public class MainWindow extends JFrame {
                        
                        centralAtmPanel.add(atmL);
                        centralAtmPanel.add(displayFld);
-                       centralAtmPanel.add(Box.createRigidArea(0, 10));
+                       centralAtmPanel.add(Box.createRigidArea(new Dimension(0, 10)));
                        centralAtmPanel.add(atmInputFld);
                      
                        Box rightAtmPanel = Box.createVerticalBox();
                        okBtn = new JButton("OK");
                        withdrawBtn = new JButton("Withdraw");
                        
-                       rightAtmPanel.add(Box.createRigidArea(3));
+                       rightAtmPanel.add(Box.createRigidArea(new Dimension(0, 3)));
                        rightAtmPanel.add(okBtn);
                        rightAtmPanel.add(Box.createVerticalGlue());
                        rightAtmPanel.add(withdrawBtn);
-                        rightAtmPanel.add(Box.createRigidArea(3));
+                        rightAtmPanel.add(Box.createRigidArea(new Dimension(0, 3)));
                        
                        
                                                    
@@ -251,17 +254,18 @@ public class MainWindow extends JFrame {
         mainPanel.add(centerPanel);
         mainPanel.add(rightPanel);
 
-        add.(mainPanel);
+
 
 
         setSize(900, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        add(mainPanel);
         setVisible(true);
     }
                        
                        public void setCardNumber(String cardNumber){
-                       String[] fullNumber = name.split(" ");
-                           cardNumber3.setText(fullNumber[0];
-                                               cardNumber4.setText(fullNumber[1];
+                       String[] fullNumber = cardNumber.split(" ");
+                           cardNumber3.setText(fullNumber[0]);
+                                               cardNumber4.setText(fullNumber[1]);
                        }
 }

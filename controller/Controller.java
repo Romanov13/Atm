@@ -16,7 +16,7 @@ public class Controller {
     
     public Controller(){
        currentBank = new Bank();
-        iShop = new InternetShop();
+        iShop = new InternetShop("iShop", currentBank);
         activeAtm= new Atm();
  
     }
@@ -45,7 +45,7 @@ public class Controller {
     }
     
     public void issueCard(){
-    Card c = currentBank.issueCard(currentBank.serchAccount(currentPayer));
+    Card c = currentBank.issueCard(currentBank.searchAccount(currentPayer));
         currentPayer.addCard(c);
         currentPayer.setPrimeCard(c);
         
@@ -61,7 +61,7 @@ public class Controller {
     }
     
     public String getAccountNumber(){
-        String accNumber = currentBank.searchAccount(currentPayer).getNumber();
+        String accNumber = String.valueOf(currentBank.searchAccount(currentPayer).getNumber());
         return accNumber;
      
     }

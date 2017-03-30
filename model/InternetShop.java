@@ -52,7 +52,7 @@ System.out.println("To buy an item for $150, please enter the card number, the d
 
     Card cardToCheck = bank.searchCard(numberInput);
     if(!(cardToCheck ==null)) {
-        if (cardToCheck.geteDate().equals(dateInput) && cardToCheck.getCvv().equals(cvvInput)) {
+        if (cardToCheck.getDate().equals(dateInput) && cardToCheck.getCvv().equals(cvvInput)) {
             return true;
         } else {
             return false;
