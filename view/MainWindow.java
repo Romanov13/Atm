@@ -176,8 +176,8 @@ public class MainWindow extends JFrame {
         cardNumber.add(cardNumber2);
         cardNumber3 = new JLabel("XXXX");
         cardNumber.add(cardNumber3);
-        cardNumber3 = new JLabel("XXXX");
-        cardNumber.add(cardNumber3);
+        cardNumber4 = new JLabel("XXXX");
+        cardNumber.add(cardNumber4);
         cardPanel.add(cardNumber);   
                
         dateL = new JLabel("XX/XX");
