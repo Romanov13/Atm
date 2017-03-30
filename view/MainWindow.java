@@ -20,9 +20,21 @@ public class MainWindow extends JFrame {
     Controller cont;
     
     //Labels
+    
+    // Profile labels
     JLabel nameL;
     JLabel phoneL;
     JLabel accL = new JLabel("");
+    
+    // Card labels
+    JLabel bankCL;
+    JLabel cardNumber1;
+    JLabel cardNumber2;
+    JLabel cardNumber3;
+    JLabel cardNumber4;
+    JLabel cvvL;
+    JLabel holderNameL;
+    JLabel dateL;
     
     String blank = "Blank";
 
@@ -92,42 +104,49 @@ public class MainWindow extends JFrame {
         // Set up background
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(java.awt.Color.blue);
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
+        // mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 
-
+        // Profile panel
         JPanel leftPanel = new JPanel();
         leftPanel.setBackground(java.awt.Color.green);
-        leftPanel.setPreferredSize(new Dimension(250, 750));
-        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.PAGE_AXIS));
+        leftPanel.setPreferredSize(new Dimension(145, 750));
+        //leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.PAGE_AXIS));
 
         Box profileBox = Box.createVerticalBox();
-        profileBox.setPreferredSize(new Dimension(250, 750));
-
-        JButton addButton = new JButton("Add");
+        profileBox.setPreferredSize(new Dimension(140, 750));
                 
         nameL.setText(cont.getPayerName());
+        profileBox.add(new JLabel("Name:");
         profileBox.add(nameL);
 
-
-        Box secondBox = Box.createVerticalBox();
-
         phoneL.setText(cont.getPayerPhone());
+        profileBox.add(new JLabel("Phone:");
         profileBox.add(phoneL);
+        profileBox.add("Account:");
         profileBox.add(accL);
+        profileBox.add(Box.createVerticalGlue();
             
       
 
         leftPanel.add(profileBox);
 
+        // Card panel
+        
+        JPanel cardPanel = new JPanel();
+        cardPanel.setBorder(BorderFactory.createRaisedBevelBorder());
+        cardPanel.setPreferredSize(new Dimention(290, 350));
+        
         JPanel centerPanel = new JPanel();
-        centerPanel.setPreferredSize(new Dimension(250, 750));
+        centerPanel.setPreferredSize(new Dimension(300, 750));
+        centerPanel.add(cardPanel);
 
         JPanel rightPanel = new JPanel();
-        rightPanel.setPreferredSize(new Dimension(250, 750));
+        rightPanel.setPreferredSize(new Dimension(145, 750));
+                       
         mainPanel.add(Box.createRigidArea(new Dimension(3, 0)));
         mainPanel.add(leftPanel);
-//        mainPanel.add(centerPanel);
-//        mainPanel.add(rightPanel);
+        mainPanel.add(centerPanel);
+        mainPanel.add(rightPanel);
 
         setContentPane(mainPanel);
 
