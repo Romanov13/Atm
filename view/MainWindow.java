@@ -66,8 +66,14 @@ public class MainWindow extends JFrame {
             }
         });
         
-        resetProfileItem
-        
+        resetProfileItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 cont.setProfile(blank, blank);
+                nameL.setText(cont.getPayerName());
+                phoneL.setText(cont.getPayerPhone());
+         }
+        });
         
 
         newAccountItem.addActionListener(new ActionPerformed(){
@@ -107,6 +113,9 @@ public class MainWindow extends JFrame {
 
         phoneL.setText(cont.getPayerPhone());
         profileBox.add(phoneL);
+        profileBox.add(accL);
+            
+      
 
         leftPanel.add(profileBox);
 
