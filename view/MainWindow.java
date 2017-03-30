@@ -28,6 +28,7 @@ public class MainWindow extends JFrame {
     
     // Card labels
     JLabel bankCL;
+    JLabel cardSystemL;
     JLabel cardNumber1;
     JLabel cardNumber2;
     JLabel cardNumber3;
@@ -60,8 +61,11 @@ public class MainWindow extends JFrame {
         
         JMenu accountMenu = new JMenu("Account");
         JMenuItem newAccountItem = new JMenuItem("Create Account");
-        
+        JMenuItem issueCardItem = new JMenuItem("Issue a Card");
         accountMenu.add(newAccountItem);
+        accountMenu.add(issueCardItem);
+        
+     
 
         menuBar.add(profileMenu);
         menuBar.add(accountMenu);
@@ -99,6 +103,18 @@ public class MainWindow extends JFrame {
                 }
                 
         });
+            
+            issueCardItem.addActionListener(new ActionPerformed(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                cont.issueCard();
+                setCardNumber(cont.getCardNumber());
+                cardSystemL.setText(cont.getCardSystem());
+                holderName.setText(cont.getPayerName().toUpperCase());
+                cvvL.setText(cont.getCardCvv());
+                dateL.setText(cont.getCardDate());
+            }
+                
             
         
         // Set up background
@@ -138,6 +154,7 @@ public class MainWindow extends JFrame {
         cardPanel.setPreferredSize(new Dimention(290, 350));
         bankCL = "Bank";
         cardPanel.add(bankCL);
+        cardSystemL = "";
                        
         JPanel cardNumber = new JPanel(new GridLayout(1, 4)); 
         cardNumber1 = "XXXX";
@@ -180,4 +197,10 @@ public class MainWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
+                       
+                       public void setCardNumber(String cardNumber){
+                       String[] fullNumber = name.split(" ");
+                           cardNumber3.setText(fullNumber[0];
+                                               cardNumber4.setText(fullNumber[1];
+                       }
 }
