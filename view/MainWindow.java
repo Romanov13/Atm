@@ -135,6 +135,30 @@ public class MainWindow extends JFrame {
         JPanel cardPanel = new JPanel();
         cardPanel.setBorder(BorderFactory.createRaisedBevelBorder());
         cardPanel.setPreferredSize(new Dimention(290, 350));
+        bankCL = "Bank";
+        cardPanel.add(bankCL);
+                       
+        JPanel cardNumber = new JPanel(new GridLayout(1, 4)); 
+        cardNumber1 = "XXXX";
+        cardNumber.add(cardNumber1); 
+        cardNumber2 = "XXXX";
+        cardNumber.add(cardNumber2);
+        cardNumber3 = "XXXX";
+        cardNumber.add(cardNumber3);
+        cardNumber3 = "XXXX";
+        cardNumber.add(cardNumber3);
+        cardPanel.add(cardNumber);   
+               
+        dateL = "XX/XX";
+        cardPanel.add(dateL);
+                       
+        cvvL = "XXX";
+        cardPanel.add(cvvL); 
+                       
+        cardHolderName.setText(cont.getPayerName().toUpperCase());
+        cardPanel.add(cardHolderName);
+                       
+                      
         
         JPanel centerPanel = new JPanel();
         centerPanel.setPreferredSize(new Dimension(300, 750));
