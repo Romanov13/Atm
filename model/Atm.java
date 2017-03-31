@@ -65,20 +65,15 @@ public class Atm{
 		}
 	}
 	
-	public void withdraw(BigDecimal amount){
+	public void withdraw(BigDecimal amount) throws OverdraftException {
 		if(cardIn){
 
 			BigDecimal balance = null;
 
 				balance = currentCard.getBalance();
 
-
-			try {
 				currentCard.setBalance(balance);
-			} catch (OverdraftException e) {
-				e.printStackTrace();
-				System.out.println("Not enough money");
-			}
+			
 		} else {
 			System.out.println("Please insert the card");
 		}
