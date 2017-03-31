@@ -247,15 +247,43 @@ public class MainWindow extends JFrame {
                                                     insertEjectBtn.setText("Eject");
                                                         cont.insertCard();
                                                         atmL.setText("Enter PIN:");
-                                                        String pin = atmInputFld.getText();
-                                                        while(!cont.checkPin(pin)){
-                                                            atmL.setText("Sorry, the PIN is incorrect.");}
-                                                        displayFld.setText(cont.getAtmBalance());
+                                                      
                                                       
                                                     } else {
                                                         insertEjectBtn.setText("Insert");
                                                         cont.ejectCard();
+                                                        depositBtn.setEnabled(false);
+                                                        withdrawBtn.setEditable(false);
                                                     }
+                                                }
+                           
+                           okBtn.addActionListener(new ActionListener() {
+                                                @Override
+                                                public void actionPerformed(ActionEvent e) {
+                                                      String pin = atmInputFld.getText();
+                                                        while(!cont.checkPin(pin)){
+                                                            atmL.setText("Sorry, the PIN is incorrect.");}
+                                                        displayFld.setText(cont.getAtmBalance());
+                                                         depositBtn.setEnabled(true);
+                                                        withdrawBtn.setEditable(true);
+                                                }
+                           }
+                                                   JFrame thisFrame = this;
+                                                   depositBtn.addActionListener(new ActionListener() {
+                                                @Override
+                                                public void actionPerformed(ActionEvent e) {
+                                                   try{ cont.withdraw(atmInputFld.getText());
+                                                       displayFld.setText(cont.getAtmBalance());
+                                                      }
+                                                    catch (OverdraftException o){
+                                                       JOptionPane.showMessageDialog(thisFrame, "Not enough money");
+                                                    }
+                                                    
+                                                    depositBtn.addActionListener(new ActionListener() {
+                                                @Override
+                                                public void actionPerformed(ActionEvent e) {
+                                                    cont.deposit(atmInputFld.getText());
+                                                    displayFld.setText(cont.getAtmBalance());
                                                 }
                                                     
                      
