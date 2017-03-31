@@ -198,6 +198,7 @@ public class MainWindow extends JFrame {
                        Box leftAtmPanel = Box.createVerticalBox();
                        insertEjectBtn = new JButton("Insert");
                        depositBtn = new JButton("Deposit");
+                       depositBtn.setEnabled(false);
                        
                        leftAtmPanel.add(Box.createRigidArea(new Dimension(0, 3)));
                        leftAtmPanel.add(insertEjectBtn);
@@ -222,6 +223,7 @@ public class MainWindow extends JFrame {
                        Box rightAtmPanel = Box.createVerticalBox();
                        okBtn = new JButton("OK");
                        withdrawBtn = new JButton("Withdraw");
+                        withdrawBtn.setEditable(false);
                        
                        rightAtmPanel.add(Box.createRigidArea(new Dimension(0, 3)));
                        rightAtmPanel.add(okBtn);
@@ -236,7 +238,26 @@ public class MainWindow extends JFrame {
                        atmPanel.add(leftAtmPanel);
                        atmPanel.add(centralAtmPanel);
                        atmPanel.add(rightAtmPanel);
-                       
+        
+        // Action Listeners for ATM buttons
+                       insertEjectBtn.addActionListener(new ActionListener() {
+                                                @Override
+                                                public void actionPerformed(ActionEvent e) {
+                                                    if(!cont.isCardInserted()){
+                                                    insertEjectBtn.setText("Eject");
+                                                        cont.insertCard();
+                                                        atmL.setText("Enter PIN:");
+                                                        String pin = atmInputFld.getText();
+                                                        while(!cont.checkPin(pin)){
+                                                            atmL.setText("Sorry, the PIN is incorrect.");}
+                                                        displayFld.setText(cont.getAtmBalance());
+                                                      
+                                                    } else {
+                                                        insertEjectBtn.setText("Insert");
+                                                        cont.ejectCard();
+                                                    }
+                                                }
+                                                    
                      
                        
                       
