@@ -86,4 +86,8 @@ public class Atm{
 			System.out.println("Please insert the card");
 		}
 	}
+	
+	public boolean isCardIn(){
+		return cardIn;
+	}
 }
