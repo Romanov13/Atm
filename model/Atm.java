@@ -9,6 +9,7 @@ public class Atm{
 	
 	public Card currentCard;
 	boolean cardIn;
+	boolean pinCorrect;
 	
 	public Atm(){
 		
@@ -18,23 +19,19 @@ public class Atm{
 	
 	public void insertCard(Card card){
 		if(!cardIn){
-			if(checkPin(card)){
+			
 		currentCard = card;
 		cardIn = true;
-		System.out.println("Card " + card.getNumber() + " of " + card.getOwner() + " is inserted.");
-			} else {System.out.println("Sorry, the PIN is incorrect");}
+		System.out.println("Card " + currentCard.getNumber() + " of " + currentCard.getOwner() + " is inserted.");
+			
 		} else {
 			System.out.println("Please eject the current card");
 		}
 	}
 	
-	public boolean checkPin(Card card){
+	public boolean checkPin(String pin){
 		
-		System.out.println("Enter the PIN");
-		Scanner sc = new Scanner(System.in);
-		String pinInput = sc.nextLine();
-		
-		if((card.getPin()).equals(pinInput))
+		if((currentCard.getPin()).equals(pin))
 		{return true;} else {return false;}
 	}
 	
@@ -43,7 +40,7 @@ public class Atm{
 		currentCard = null;
 		cardIn = false;
 		
-		System.out.println("Card in Ejected");
+		System.out.println("Card is Ejected");
 	}
 	
 	public BigDecimal checkBalance(){
