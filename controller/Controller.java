@@ -85,4 +85,20 @@ public class Controller {
     public String getCardSystem(){
      return currentPayer.getPrimeCard().getSystem();   
     }
+    
+    public void insertCard(){
+        activeAtm.insertCard(currentPayer.getPrimeCard());
+    }
+    
+    public void ejectCard(){
+    activeAtm.ejectCard();
+    }
+    
+    public boolean isCardInserted(){
+        return activeAtm.isCardIn();
+}
+    
+    public String getAtmBalance(){
+     return String.valueOf(activeAtm.checkBalance());   
+    }
 }
