@@ -98,6 +98,18 @@ public class Controller {
         return activeAtm.isCardIn();
 }
     
+    public boolean checkPin(String pin){
+    return activeAtm.checkPin(pin);
+    }
+    
+    public void withdraw(String amount) throws OverdraftException {
+    activeAtm.withdraw(BigDecimal.valueOf(amount));
+    }
+    
+    public void deposit(String amount) {
+    activeAtm.deposit(BigDecimal.valueOf(amount));
+    }
+    
     public String getAtmBalance(){
      return String.valueOf(activeAtm.checkBalance());   
     }
