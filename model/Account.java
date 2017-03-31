@@ -12,6 +12,7 @@ public class Account{
 	public Account(Payer client) {
 		this.client = client;
 		balance = BigDecimal.valueOf(0);
+		this.number = (int) (Math.random() * 9999);
 	}
 
 	public int getNumber() {
