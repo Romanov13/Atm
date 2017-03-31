@@ -206,7 +206,7 @@ public class MainWindow extends JFrame {
                        leftAtmPanel.add(depositBtn);
                         leftAtmPanel.add(Box.createRigidArea(new Dimension(0, 3)));
                        
-                       Box centralAtmPanel = Box.createVerticalBox();
+                       JPanel centralAtmPanel = new JPanel(new GridLayout(0, 1));
                        atmL = new JLabel("Insert a card");
                        
                        displayFld = new JTextField(10);
@@ -217,7 +217,6 @@ public class MainWindow extends JFrame {
                        
                        centralAtmPanel.add(atmL);
                        centralAtmPanel.add(displayFld);
-                       centralAtmPanel.add(Box.createRigidArea(new Dimension(0, 10)));
                        centralAtmPanel.add(atmInputFld);
                      
                        Box rightAtmPanel = Box.createVerticalBox();
