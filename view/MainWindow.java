@@ -138,11 +138,11 @@ public class MainWindow extends JFrame {
         // Profile panel
         JPanel leftPanel = new JPanel();
         leftPanel.setBackground(java.awt.Color.green);
-        leftPanel.setPreferredSize(new Dimension(145, 750));
+        leftPanel.setPreferredSize(new Dimension(245, 750));
         //leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.PAGE_AXIS));
 
         Box profileBox = Box.createVerticalBox();
-        profileBox.setPreferredSize(new Dimension(140, 750));
+        //profileBox.setPreferredSize(new Dimension(140, 750));
                 
         nameL = new JLabel(cont.getPayerName());
         profileBox.add(new JLabel("Name:"));
@@ -164,7 +164,7 @@ public class MainWindow extends JFrame {
         JPanel cardPanel = new JPanel();
         cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
         cardPanel.setBorder(BorderFactory.createRaisedBevelBorder());
-        cardPanel.setPreferredSize(new Dimension(290, 300));
+        cardPanel.setPreferredSize(new Dimension(390, 300));
         bankCL = new JLabel("Bank");
         cardPanel.add(bankCL);
         cardSystemL = new JLabel("");
@@ -193,7 +193,7 @@ public class MainWindow extends JFrame {
                      JPanel atmPanel = new JPanel();
                        atmPanel.setLayout(new BoxLayout(atmPanel, BoxLayout.X_AXIS));
                        atmPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "ATM"));
-                       atmPanel.setPreferredSize(new Dimension(290, 350));
+                       atmPanel.setPreferredSize(new Dimension(390, 350));
                        
                        Box leftAtmPanel = Box.createVerticalBox();
                        insertEjectBtn = new JButton("Insert");
@@ -291,12 +291,38 @@ public class MainWindow extends JFrame {
                       
         
         JPanel centerPanel = new JPanel();
-        centerPanel.setPreferredSize(new Dimension(300, 750));
+        centerPanel.setPreferredSize(new Dimension(395, 750));
         centerPanel.add(cardPanel);
                        centerPanel.add(atmPanel);
+                                                        
+                                                        // Internet Shop panel
+                                                        
+                                                        JPanel firstItem = new JPanel();
+                                                        firstItem.setBorder(BorderFactory.createLineBorder(Color.black));
+                                                        JPanel firstItemCost = new JPanel(new GridLayout(1, 2));
+                                                        int fic = 100;
+                                                        firstItemCost.add(new JLabel("Price: "));
+                                                        JButton ficBtn = new JButton ("$" + String.ValueOf(fic);
+                                                                 ficBtnaddActionListener(new ActionListener() {
+                                                @Override
+                                                public void actionPerformed(ActionEvent e) {
+                                                    
+                                                    
+                                                }
+                                                        firstItemCost.add(ficBtn);
+                                                        firstItem.add(new JLabel("Random Quartz Military Men Watch"));
+                                                        ImageIcon image = new ImageIcon("watch.jpg");
+                                                        firstItem.add(new JLabel("", image, JLabel.CENTER));
+                                                         firstItem.add(firstItemCost);
+                                                                          
+                                                                          
+                                                         
+                                                        
 
         JPanel rightPanel = new JPanel();
-        rightPanel.setPreferredSize(new Dimension(145, 750));
+        rightPanel.setPreferredSize(new Dimension(245, 750));
+        rightPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "iShop"));
+            rightPanel.add(firstItem);                                            
                        
         mainPanel.add(Box.createRigidArea(new Dimension(3, 0)));
         mainPanel.add(leftPanel);
